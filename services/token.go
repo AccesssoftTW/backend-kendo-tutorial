@@ -9,6 +9,8 @@ import (
 )
 
 type TokenService struct {
+	AuthToken string  `json:"auth_token"`
+	RefreshToken string`json:"refresh_token"`
 }
 
 var signKey = []byte("aga222n3223rgnaow2f352t24g2g4")
