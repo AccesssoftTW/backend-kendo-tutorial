@@ -28,6 +28,11 @@ func InitRoute() *gin.Engine {
 	config.AllowHeaders = []string{"api_token", "content-type", "Access-Control-Allow-Origin"}
 	router.Use(cors.New(config))
 
+	// 提供container健康檢測用
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{})
+	})
+
 	apiv1 := router.Group("/api/v1")
 
 	// 登入API
