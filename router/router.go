@@ -3,6 +3,7 @@ package router
 import (
 	"io"
 	"os"
+	"strings"
 
 	. "backend-kendo-tutorial/apis"
 	"backend-kendo-tutorial/middleware/token"
@@ -24,7 +25,8 @@ func InitRoute() *gin.Engine {
 
 	// 跨網域設定
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost"}
+	// config.AllowOrigins = []string{"http://localhost"}
+	config.AllowOrigins = strings.Split(viper.GetString("cors"), ",")
 	config.AllowHeaders = []string{"api_token", "content-type", "Access-Control-Allow-Origin"}
 	router.Use(cors.New(config))
 
