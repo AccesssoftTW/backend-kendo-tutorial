@@ -8,4 +8,6 @@ database:
   port: "3306"
   name: "nine_tailed_fox"
 
+cors: "http://ec2co-ecsel-fkl648rjjitm-2094224457.us-east-1.elb.amazonaws.com"
+
 mode: "debug | test | release"
