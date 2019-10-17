@@ -45,5 +45,5 @@ func GetAuthUser(c *gin.Context) {
 		c.JSON(400, resp)
 		return
 	}
-	c.JSON(400, authUser)
+	c.JSON(200, authUser)
 }

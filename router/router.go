@@ -26,8 +26,9 @@ func InitRoute() *gin.Engine {
 	// 跨網域設定
 	config := cors.DefaultConfig()
 	// config.AllowOrigins = []string{"http://localhost"}
+	config.AllowHeaders = []string{"auth_token", "content-type", "Access-Control-Allow-Origin"}
 	config.AllowOrigins = strings.Split(viper.GetString("cors"), ",")
-	config.AllowHeaders = []string{"api_token", "content-type", "Access-Control-Allow-Origin"}
+
 	router.Use(cors.New(config))
 
 	// 提供container健康檢測用
