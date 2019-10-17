@@ -43,9 +43,8 @@ func InitRoute() *gin.Engine {
 
 	apiv1.Use(token.TokenAuthMiddleware())
 	{
-
-		// apiApp := apiv1.Group("/auth")
-		// apiApp.POST("/login", UploadAppPhoto)
+		apiAuth := apiv1.Group("/auth")
+		apiAuth.GET("/user", GetAuthUser)
 	}
 
 	return router

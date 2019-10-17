@@ -3,6 +3,9 @@ package services
 import (
 	"errors"
 
+	"backend-kendo-tutorial/models/token"
+	"backend-kendo-tutorial/models/user"
+
 	"github.com/spf13/viper"
 )
 
@@ -11,7 +14,7 @@ type AuthService struct {
 	Password string `json:"password"`
 }
 
-func (this AuthService) Login() (token TokenService, err error) {
+func (this AuthService) Login() (tokenModel token.Token, err error) {
 
 	// admin檢查
 	if this.Account == viper.GetString("admin.account") && this.Password == viper.GetString("admin.password") {
@@ -19,5 +22,12 @@ func (this AuthService) Login() (token TokenService, err error) {
 	} else {
 		err = errors.New("帳號碼密不正確")
 	}
+	return
+}
+
+func (this AuthService) GetAuthUser(tokenStr string) (authUser user.User, err error) {
+
+	authUser.Name = "elsa"
+
 	return
 }
