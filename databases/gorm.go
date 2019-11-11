@@ -23,7 +23,7 @@ func Open() {
 	if Eloquent.Error != nil {
 		panic(Eloquent.Error)
 	}
-	
+
 	Eloquent.LogMode(gin.DebugMode == gin.Mode())
 }
 
