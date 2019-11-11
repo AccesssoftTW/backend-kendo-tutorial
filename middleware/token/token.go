@@ -2,6 +2,7 @@ package token
 
 import (
 	"backend-kendo-tutorial/models/resp"
+	"backend-kendo-tutorial/services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,11 +13,22 @@ func TokenAuthMiddleware() gin.HandlerFunc {
 
 		// 取token
 		authToken := c.Request.Header.Get("auth_token")
-
-		// 如果token找不到就給錯
 		if authToken == "" {
-			respondWithError(401, "找不到token", c)
+
+			// 沒有token，報錯
+			respondWithError(401, "找不到憑證", c)
 			return
+		} else {
+
+			// 取得token的話就驗證
+			var tokenService services.TokenService
+			_, err := tokenService.GetTokenInfo(authToken)
+			if err != nil {
+
+				// token不合法，報錯
+				respondWithError(401, "此帳號憑證不合法或已過期", c)
+				return
+			}
 		}
 
 		c.Next()

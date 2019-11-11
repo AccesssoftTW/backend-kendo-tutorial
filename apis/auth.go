@@ -47,3 +47,47 @@ func GetAuthUser(c *gin.Context) {
 	}
 	c.JSON(200, authUser)
 }
+
+func RefreshToken(c *gin.Context) {
+
+	// 取refresh_token
+	refreshToken := c.Request.Header.Get("refresh_token")
+	if refreshToken == "" {
+
+		var resp resp.ApiResponse
+		resp.Result = "取得重整憑證失敗"
+		c.JSON(400, resp)
+		return
+	}
+	// 驗證
+	var tokenService services.TokenService
+	ok, err := tokenService.ValidateToken(refreshToken)
+	if err != nil {
+
+		var resp resp.ApiResponse
+		resp.Result = err.Error()
+		c.JSON(400, resp)
+		return
+	}
+
+	if ok {
+		var authService services.AuthService
+		token, err := authService.RefreshToken(refreshToken)
+		if err != nil {
+
+			var resp resp.ApiResponse
+			resp.Result = err.Error()
+			c.JSON(400, resp)
+			return
+		}
+
+		c.JSON(200, token)
+		return
+	} else {
+
+		var resp resp.ApiResponse
+		resp.Result = err.Error()
+		c.JSON(400, resp)
+		return
+	}
+}

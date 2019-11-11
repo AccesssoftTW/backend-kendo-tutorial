@@ -63,7 +63,7 @@ func (this TokenService) ValidateToken(uncheckToken string) (bool, error) {
 }
 
 // 取得token中的資訊
-func (this TokenService) getTokenInfo(authToken string) (jwt.MapClaims, error) {
+func (this TokenService) GetTokenInfo(authToken string) (jwt.MapClaims, error) {
 	token, err := jwt.Parse(authToken, func(token *jwt.Token) (interface{}, error) {
 		// Don't forget to validate the alg is what you expect:
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

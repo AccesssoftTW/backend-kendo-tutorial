@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"backend-kendo-tutorial/databases"
 	"backend-kendo-tutorial/router"
 
 	"github.com/spf13/viper"
@@ -13,6 +14,9 @@ import (
 func main() {
 
 	LoadConfig()
+
+	databases.Open()
+	defer databases.Close()
 
 	// 啟動Gin
 	app := router.InitRoute()
@@ -31,4 +35,6 @@ func LoadConfig() {
 			panic(fmt.Errorf("Fatal error config file: %s \n", err))
 		}
 	}
+
+	viper.WatchConfig()
 }
