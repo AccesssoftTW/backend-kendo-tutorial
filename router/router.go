@@ -41,11 +41,13 @@ func InitRoute() *gin.Engine {
 	// 登入API
 	apiAuth := apiv1.Group("/auth")
 	apiAuth.POST("/login", Login)
+	apiAuth.POST("/refresh", RefreshToken)
 
 	apiv1.Use(token.TokenAuthMiddleware())
 	{
 		apiAuth := apiv1.Group("/auth")
 		apiAuth.GET("/user", GetAuthUser)
+
 	}
 
 	return router
