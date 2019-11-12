@@ -36,5 +36,5 @@ func LoadConfig() {
 		}
 	}
 
-	viper.WatchConfig()
+	// viper.WatchConfig()
 }
