@@ -25,9 +25,11 @@ func main() {
 
 func LoadConfig() {
 	if _, err := os.Stat("./config.yml"); os.IsNotExist(err) {
+		fmt.Println("讀取環境變數...")
 		viper.AutomaticEnv()
 		viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	} else {
+		fmt.Println("讀取config.yml...")
 		viper.SetConfigName("config")
 		viper.AddConfigPath(".")
 		err := viper.ReadInConfig()
@@ -35,6 +37,4 @@ func LoadConfig() {
 			panic(fmt.Errorf("Fatal error config file: %s \n", err))
 		}
 	}
-
-	// viper.WatchConfig()
 }
