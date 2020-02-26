@@ -54,8 +54,8 @@ func TokenAuthMiddleware() gin.HandlerFunc {
 				respondWithError(401, err.Error(), c)
 				return
 			}
-			if userEntity.ExpiredAt != nil {
-				var t1 = userEntity.ExpiredAt.Unix()
+			if userEntity.ExpireAt != nil {
+				var t1 = userEntity.ExpireAt.Unix()
 				var t2 = time.Now().Unix()
 				if t1 < t2 {
 					respondWithError(401, "帳號已過期", c)
