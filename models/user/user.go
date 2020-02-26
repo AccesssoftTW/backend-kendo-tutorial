@@ -11,6 +11,6 @@ type User struct {
 	Name        string     `json:"name"`
 	Account     string     `json:"account"`
 	Password    string     `json:"password"`
-	ExpiredAt   *time.Time `json:"expired_at"`
+	ExpireAt   *time.Time `json:"expire_at"`
 	PhoneNumber string     `json:"phone_number"`
 }

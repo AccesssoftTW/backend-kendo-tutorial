@@ -48,6 +48,10 @@ func InitRoute() *gin.Engine {
 		apiAuth := apiv1.Group("/auth")
 		apiAuth.GET("/user", GetAuthUser)
 
+		apiUser := apiv1.Group("/user")
+		apiUser.GET("/get", GetUser)
+		apiUser.POST("/add", AddUser)
+
 	}
 
 	return router
