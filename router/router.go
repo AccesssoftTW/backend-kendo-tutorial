@@ -51,7 +51,8 @@ func InitRoute() *gin.Engine {
 		apiUser := apiv1.Group("/user")
 		apiUser.GET("/get", GetUser)
 		apiUser.POST("/add", AddUser)
-
+		apiUser.PUT("/update", UpdateUser)
+		apiUser.DELETE("/delete/:id", DeleteUser)
 	}
 
 	return router
