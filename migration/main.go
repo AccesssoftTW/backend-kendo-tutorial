@@ -21,8 +21,8 @@ func main() {
 		panic(fmt.Errorf("Fatal error config file: %s \n", err))
 	}
 	file := viper.GetString("migration.locate")
-
-	db, _ := sql.Open("mysql", "root:jtMpPWhEmK7AYZ@tcp(localhost:3308)/kendo?multiStatements=true")
+	conn := viper.GetString("migration.conn")
+	db, _ := sql.Open("mysql", conn)
 	driver, _ := mysql.WithInstance(db, &mysql.Config{})
 	m, _ := migrate.NewWithDatabaseInstance(
 		file,
