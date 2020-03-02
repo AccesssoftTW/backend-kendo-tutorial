@@ -1,2 +1,3 @@
 migration: 
     locate: "file:///Users/luwensong/winston-github/backend-kendo-tutorial/migration"
+    conn: "root:jtMpPWhEmK7AYZ@tcp(localhost:3308)/kendo?multiStatements=true"
